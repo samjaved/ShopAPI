@@ -68,5 +68,7 @@ nelmio_api_doc:
               token: { type: string }
     areas:
         default:
+            path_patterns: [^/customer ]
+        admin:
             path_patterns: [ ^/admin ]
 
