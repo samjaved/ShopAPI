@@ -30,3 +30,18 @@ $  php bin/console doctrine:migrations:migrate
 ```bash
 $  php bin/console doctrine:fixtures:load
 ```
+### Start Server
+```bash
+$  php bin/console s:r
+```
+
+### Customer Feature api doc
+```bash
+Access in browser
+$  localhost:8000/api/doc
+```
+### Admin Feature api/doc
+```bash
+Access in browser
+$  localhost:8000/api/doc/admin
+```
