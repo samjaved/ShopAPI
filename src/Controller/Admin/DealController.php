@@ -91,7 +91,7 @@ class DealController
             $product = null;
         }
         if ($product === null) {
-            throw new NotFoundHttpException(sprintf('AppUser with id %s not found', $id));
+            throw new NotFoundHttpException(sprintf('Product with id %s not found', $id));
         }
         return $product;
     }
