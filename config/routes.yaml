@@ -1,3 +1,7 @@
 admin:
     prefix: /admin
     resource: '../src/Controller/Admin/'
+customer:
+    prefix: /customer
+    resource: '../src/Controller/Customer/'
+
