@@ -1,13 +1,30 @@
 security:
+    encoders:
+            App\Entity\BackendUser:
+                algorithm: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        backend_provider:
+          entity:
+            class: App\Entity\BackendUser
+            property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+        backend_login:
+            pattern: ^/admin/login$
+            stateless: true
             anonymous: true
+            gfreeau_get_jwt: ~
+            provider: backend_provider
+        backend:
+            pattern: ^/admin
+            stateless: true
+            guard:
+              authenticators:
+                  - lexik_jwt_authentication.jwt_token_authenticator
+            provider: backend_provider
 
             # activate different ways to authenticate
 
@@ -20,5 +37,11 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY  }
+         - { path: ^/admin/product/create, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+    role_hierarchy:
+      ROLE_ADMIN:
+        - ROLE_RESOURCE_PRODUCT_CREATE
+        - ROLE_RESOURCE_PRODUCT_UPDATE
+        - ROLE_RESOURCE_DEAL_CREATE
