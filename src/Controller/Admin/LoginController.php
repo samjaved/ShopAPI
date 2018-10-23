@@ -16,7 +16,7 @@ class LoginController
     /**
      * Retrieve a JWT token to use API methods that require an authentication.
      * @Operation(
-     *     tags={"Users Authentication"},
+     *     tags={"Authentication"},
      *     security={},
      *     @SWG\Parameter(
      *         name="credentials",
