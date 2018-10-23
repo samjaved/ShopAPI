@@ -20,4 +20,9 @@ interface ProductRepository
      * @return Product|null
      */
     public function findOneById(string $id): ?Product;
+
+    /**
+     * @return Product[]
+     */
+    public function findAll(): array;
 }

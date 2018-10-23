@@ -44,4 +44,16 @@ class ORMProductRepository implements ProductRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+    /**
+     * @return Product[]
+     */
+    public function findAll(): array
+    {
+        /** @noinspection PhpUnhandledExceptionInspection */
+        return $this->manager->createQueryBuilder()
+            ->select('p.productName,p.price-p.discount AS price,p.currency')
+            ->from(Product::class, 'p')
+            ->getQuery()
+            ->getResult();
+    }
 }
